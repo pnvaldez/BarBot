@@ -1,0 +1,19 @@
+None
+Absinthe
+Blue Curacao
+Champagne
+Club Soda
+Coke
+Gin
+Orange Juice
+Red Wine
+Rum
+Sprite
+Sour Mix
+Tequila
+Tonic
+Triple Sec
+Vodka
+Water
+Whiskey
+White Wine

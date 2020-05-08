@@ -1,0 +1,15 @@
+Absinthe Shot,Absinthe,1.5
+AMF,Vodka,1,Rum,1,Blue Curacao,1,Club Soda,3
+Gin Shot,Gin,1.5
+Gin and Tonic,Gin,1.5,Tonic,3
+LIT,Vodka,1,Rum,1,Triple Sec,1,Coke,3
+Mimosa,Champagne,4,Orange Juice,2
+Moscow Mule,Vodka,1.5,Ginger Beer,3
+Red Wine Glass,Red Wine,5
+Rum Shot,Rum,1.5
+Rum and Coke,Rum,1.5,Coke,4
+Screwdriver,Vodka,1.5,Orange Juice,3
+Vodka Water,Vodka,1.5,Water 4
+Vodka Shot,Vodka,1.5
+Whiskey Shot,Whiskey,1.5
+White Wine Glass,White Wine,5
