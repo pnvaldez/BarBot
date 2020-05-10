@@ -23,7 +23,7 @@ if arduino_port != 'None':
 else:
     print('Connection Issue!')
 
-time.sleep(3)
+time.sleep(2)
 ser.write(bytes(str(flowrate), 'utf-8'))
 
 

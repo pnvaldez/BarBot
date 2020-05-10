@@ -1,6 +1,6 @@
-loadout_csv = 'barbot_loadout.txt'
-drink_recipe_csv = "barbot_recipes.txt"
-ingredient_csv = "barbot_ingredients.txt"
+loadout_csv = './config/barbot_loadout.txt'
+drink_recipe_csv = "./config/barbot_recipes.txt"
+ingredient_csv = "./config/barbot_ingredients.txt"
 flowrate = 1.31 #ml/sec
 
 import sys
@@ -15,9 +15,9 @@ class Drink:
 		self.loadout = loadout
 		self.ser = ser
 
-	def can_make(self, curr_drinks):
+	def can_make(self):
 		for key in self.recipe:
-			if key not in curr_drinks:
+			if key not in self.loadout:
 				return False
 		return True
 
@@ -77,7 +77,6 @@ class Utility:
 			for row in csv_reader:
 				curr_recipe = self.make_recipe(row)
 				ingredients = curr_recipe[1]
-				print(ingredients)
 				makeable = True
 
 				for key in ingredients:
