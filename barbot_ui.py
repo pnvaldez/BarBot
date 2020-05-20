@@ -4,6 +4,8 @@ from PyQt5.QtCore    import *
 from PyQt5.QtWidgets import *
 
 import sys
+#sys.path.insert(0, 'D:\\Documents\\BarBot\\config')
+import update_configs
 from barbot_classes import *
 
 
@@ -500,6 +502,13 @@ class setup_window(QMainWindow):
 		back_button.setStyleSheet(back_button_style)
 		back_button.clicked.connect(self.back_clicked)
 
+		next_button = QtWidgets.QToolButton(self)
+		next_button.setGeometry(QtCore.QRect(190, 230, 161, 41))
+		next_button.setFont(font)
+		next_button.setStyleSheet(back_button_style)
+		next_button.setArrowType(QtCore.Qt.RightArrow)
+		next_button.clicked.connect(self.next_clicked)
+
 		logo_txt1 =QtWidgets.QLabel("Bar", self)
 		logo_txt1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
 		logo_txt1.setGeometry(QtCore.QRect(350, 240, 41, 31))
@@ -518,6 +527,12 @@ class setup_window(QMainWindow):
 		logo_pic.setScaledContents(True)
 
 	@pyqtSlot()
+	def next_clicked(self):
+		self.cams = config_window(self.loadout)
+		self.cams.show()
+		self.close()
+
+	@pyqtSlot()
 	def loadout_clicked(self):
 		self.cams = loadout_window(self.loadout)
 		self.cams.show()
@@ -532,6 +547,92 @@ class setup_window(QMainWindow):
 	@pyqtSlot()
 	def back_clicked(self):
 		self.cams = Window(self.loadout)
+		self.cams.show()
+		self.close()
+
+class config_window(QMainWindow):
+	def __init__(self, loadout):
+		super().__init__()
+		self.title = "BarBot"
+		self.top = 0
+		self.left = 0
+		self.height = 320
+		self.width = 480
+		self.loadout = loadout
+		self.InitUi()
+
+	def InitUi(self):
+		MainWindow = QtWidgets.QMainWindow()
+		self.setWindowTitle(self.title)
+		self.setGeometry(self.top, self.left, self.width, self.height)
+		self.setStyleSheet(background_style)
+		self.centralwidget = QtWidgets.QWidget(MainWindow)
+		self.centralwidget.setObjectName("centralwidget")
+		icon = QtGui.QIcon()
+		icon.addPixmap(QtGui.QPixmap(arrow_icon), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+
+		font = QtGui.QFont()
+		font.setFamily("Segoe UI")
+		font.setBold(False)
+		font.setItalic(False)
+		font.setWeight(50)
+		font.setPointSize(28)
+
+		ingredients_button = QtWidgets.QPushButton('Update Ingredients', self)
+		ingredients_button.setGeometry(QtCore.QRect(10, 0, 451, 91))
+		ingredients_button.setFont(font)
+		ingredients_button.setStyleSheet(main_button_style)
+		ingredients_button.clicked.connect(self.ingredients_clicked)
+
+		recipe_button = QtWidgets.QPushButton('Prime/Flush', self)
+		recipe_button.setGeometry(QtCore.QRect(10, 110, 451, 91))
+		recipe_button.setFont(font)
+		recipe_button.setStyleSheet(main_button_style)
+		recipe_button.clicked.connect(self.recipe_clicked)
+
+		back_button = QtWidgets.QToolButton(self)
+		back_button.setGeometry(QtCore.QRect(10, 230, 161, 41))
+		back_button.setFont(font)
+		back_button.setIcon(icon)
+		back_button.setStyleSheet(back_button_style)
+		back_button.clicked.connect(self.back_clicked)
+
+		logo_txt1 =QtWidgets.QLabel("Bar", self)
+		logo_txt1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+		logo_txt1.setGeometry(QtCore.QRect(350, 240, 41, 31))
+		logo_txt1.setFont(logo_font)
+		logo_txt1.setStyleSheet("color: rgb(255,78,96);")
+
+		logo_txt2 =QtWidgets.QLabel("Bot", self)
+		logo_txt2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+		logo_txt2.setGeometry(QtCore.QRect(390, 240, 41, 31))
+		logo_txt2.setFont(logo_font)
+		logo_txt2.setStyleSheet("color: rgb(69,226,228);")
+
+		logo_pic = QtWidgets.QLabel(self)
+		logo_pic.setGeometry(QtCore.QRect(440, 240, 31, 31))
+		logo_pic.setPixmap(QtGui.QPixmap(drink_logo))
+		logo_pic.setScaledContents(True)
+
+	@pyqtSlot()
+	def ingredients_clicked(self):
+		update_configs.ingredients()
+		self.cams = setup_window(self.loadout)
+		self.cams.show()
+		self.close()
+		
+
+	@pyqtSlot()
+	def recipe_clicked(self):
+		update_configs.recipe()
+		self.cams = setup_window(self.loadout)
+		self.cams.show()
+		self.close()
+		
+
+	@pyqtSlot()
+	def back_clicked(self):
+		self.cams = setup_window(self.loadout)
 		self.cams.show()
 		self.close()
 
