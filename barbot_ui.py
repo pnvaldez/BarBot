@@ -47,15 +47,16 @@ drink_logo = "Images/drink_icon.png"
 arrow_icon = "Images/back_arrow.png"
 
 
+
 ######GUI
-class Window(QMainWindow):
+class Window(QSplashScreen):
 	def __init__(self,loadout):
 		super().__init__()
 		self.title = "first_screen"
 		self.top = 0
 		self.left = 0
-		self.height = 240
-		self.width = 320
+		self.height = 320
+		self.width = 480
 		self.loadout = loadout
 		self.InitUi()
 
@@ -69,38 +70,38 @@ class Window(QMainWindow):
 
 		font = QtGui.QFont()
 		font.setFamily("Segoe UI")
-		font.setPointSize(20)
+		font.setPointSize(28)
 		font.setBold(False)
 		font.setItalic(False)
 		font.setWeight(50)
 
 		drink_button = QtWidgets.QPushButton('Drink', self)
-		drink_button.setGeometry(QtCore.QRect(10, 10, 301, 61))
+		drink_button.setGeometry(QtCore.QRect(10, 0, 451, 91))
 		drink_button.setFont(font)
 		drink_button.setStyleSheet(main_button_style)
 
 		drink_button.clicked.connect(self.drink_clicked)
 
 		setup_button = QtWidgets.QPushButton('Setup', self)
-		setup_button.setGeometry(QtCore.QRect(10, 80, 301, 61))
+		setup_button.setGeometry(QtCore.QRect(10, 110, 451, 91))
 		setup_button.setFont(font)
 		setup_button.setStyleSheet(main_button_style)
 		setup_button.clicked.connect(self.setup_clicked)
 
 		logo_txt1 =QtWidgets.QLabel("Bar", self)
 		logo_txt1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt1.setGeometry(QtCore.QRect(210, 160, 41, 31))
+		logo_txt1.setGeometry(QtCore.QRect(350, 240, 41, 31))
 		logo_txt1.setFont(logo_font)
 		logo_txt1.setStyleSheet("color: rgb(255,78,96);")
 
 		logo_txt2 =QtWidgets.QLabel("Bot", self)
 		logo_txt2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt2.setGeometry(QtCore.QRect(245, 160, 41, 31))
+		logo_txt2.setGeometry(QtCore.QRect(390, 240, 41, 31))
 		logo_txt2.setFont(logo_font)
 		logo_txt2.setStyleSheet("color: rgb(69,226,228);")
 
 		logo_pic = QtWidgets.QLabel(self)
-		logo_pic.setGeometry(QtCore.QRect(280,160,31,31))
+		logo_pic.setGeometry(QtCore.QRect(440, 240, 31, 31))
 		logo_pic.setPixmap(QtGui.QPixmap(drink_logo))
 		logo_pic.setScaledContents(True)
 		self.show()
@@ -117,14 +118,14 @@ class Window(QMainWindow):
 		self.cams.show()
 		self.close()
 
-class drink_window(QMainWindow):
+class drink_window(QSplashScreen):
 	def __init__(self, loadout):
 		super().__init__()
 		self.title = "first_screen"
 		self.top = 0
 		self.left = 0
-		self.height = 240
-		self.width = 320
+		self.height = 320
+		self.width = 480
 		self.loadout = loadout
 		self.InitUi()
 
@@ -144,16 +145,16 @@ class drink_window(QMainWindow):
 		font.setBold(False)
 		font.setItalic(False)
 		font.setWeight(50)
-		font.setPointSize(20)
+		font.setPointSize(28)
 
 		recipe_button = QtWidgets.QPushButton('Recipe List', self)
-		recipe_button.setGeometry(QtCore.QRect(10, 10, 301, 61))
+		recipe_button.setGeometry(QtCore.QRect(10, 0, 451, 91))
 		recipe_button.setFont(font)
 		recipe_button.setStyleSheet(main_button_style)
 		recipe_button.clicked.connect(self.recipe_clicked)
 
 		custom_button = QtWidgets.QPushButton('+ Custom', self)
-		custom_button.setGeometry(QtCore.QRect(10, 80, 301, 61))
+		custom_button.setGeometry(QtCore.QRect(10, 110, 451, 91))
 		custom_button.setFont(font)
 		custom_button.setStyleSheet(main_button_style)
 		custom_button.clicked.connect(self.custom_clicked)
@@ -161,7 +162,7 @@ class drink_window(QMainWindow):
 		font.setPointSize(8)
 
 		back_button = QtWidgets.QToolButton(self)
-		back_button.setGeometry(QtCore.QRect(0, 160, 161, 31))
+		back_button.setGeometry(QtCore.QRect(10, 230, 161, 41))
 		back_button.setFont(font)
 		back_button.setIcon(icon)
 		back_button.setStyleSheet(back_button_style)
@@ -169,18 +170,18 @@ class drink_window(QMainWindow):
 
 		logo_txt1 =QtWidgets.QLabel("Bar", self)
 		logo_txt1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt1.setGeometry(QtCore.QRect(210, 160, 41, 31))
+		logo_txt1.setGeometry(QtCore.QRect(350, 240, 41, 31))
 		logo_txt1.setFont(logo_font)
 		logo_txt1.setStyleSheet("color: rgb(255,78,96);")
 
 		logo_txt2 =QtWidgets.QLabel("Bot", self)
 		logo_txt2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt2.setGeometry(QtCore.QRect(245, 160, 41, 31))
+		logo_txt2.setGeometry(QtCore.QRect(390, 240, 41, 31))
 		logo_txt2.setFont(logo_font)
 		logo_txt2.setStyleSheet("color: rgb(69,226,228);")
 
 		logo_pic = QtWidgets.QLabel(self)
-		logo_pic.setGeometry(QtCore.QRect(280,160,31,31))
+		logo_pic.setGeometry(QtCore.QRect(440, 240, 31, 31))
 		logo_pic.setPixmap(QtGui.QPixmap(drink_logo))
 		logo_pic.setScaledContents(True)
 
@@ -209,14 +210,14 @@ class drink_window(QMainWindow):
 		self.cams.show()
 		self.close()
 
-class recipe_window(QMainWindow):
+class recipe_window(QSplashScreen):
 	def __init__(self, loadout):
 		super().__init__()
 		self.title = "first_screen"
 		self.top = 0
 		self.left = 0
-		self.height = 240
-		self.width = 320
+		self.height = 320
+		self.width = 480
 		self.loadout = loadout
 		self.drink_list = loadout.get_makeable_drinks()
 		self.indx = 0
@@ -238,10 +239,10 @@ class recipe_window(QMainWindow):
 		font.setBold(False)
 		font.setItalic(False)
 		font.setWeight(50)
-		font.setPointSize(20)
+		font.setPointSize(28)
 
 		self.recipe_button = QtWidgets.QPushButton(self.drink_list[0][0], self)
-		self.recipe_button.setGeometry(QtCore.QRect(10, 10, 301, 61))
+		self.recipe_button.setGeometry(QtCore.QRect(10, 0, 451, 91))
 		self.recipe_button.setFont(font)
 		self.recipe_button.setStyleSheet(main_button_style)
 
@@ -249,20 +250,20 @@ class recipe_window(QMainWindow):
 
 		font.setPointSize(16)
 		previous_button = QtWidgets.QPushButton('Previous', self)
-		previous_button.setGeometry(QtCore.QRect(10, 80, 141, 61))
+		previous_button.setGeometry(QtCore.QRect(10, 120, 211, 91))
 		previous_button.setFont(font)
 		previous_button.setStyleSheet(ghost_button_style)
 
 		previous_button.clicked.connect(self.previous_clicked)
 
 		next_button = QtWidgets.QPushButton('Next', self)
-		next_button.setGeometry(QtCore.QRect(170, 80, 141, 61))
+		next_button.setGeometry(QtCore.QRect(250, 120, 211, 91))
 		next_button.setFont(font)
 		next_button.setStyleSheet(ghost_button_style)
 		next_button.clicked.connect(self.next_clicked)
 
 		back_button = QtWidgets.QToolButton(self)
-		back_button.setGeometry(QtCore.QRect(0, 160, 161, 31))
+		back_button.setGeometry(QtCore.QRect(10, 230, 161, 41))
 		back_button.setFont(font)
 		back_button.setIcon(icon)
 		back_button.setStyleSheet(back_button_style)
@@ -270,18 +271,18 @@ class recipe_window(QMainWindow):
 
 		logo_txt1 =QtWidgets.QLabel("Bar", self)
 		logo_txt1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt1.setGeometry(QtCore.QRect(210, 160, 41, 31))
+		logo_txt1.setGeometry(QtCore.QRect(350, 240, 41, 31))
 		logo_txt1.setFont(logo_font)
 		logo_txt1.setStyleSheet("color: rgb(255,78,96);")
 
 		logo_txt2 =QtWidgets.QLabel("Bot", self)
 		logo_txt2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt2.setGeometry(QtCore.QRect(245, 160, 41, 31))
+		logo_txt2.setGeometry(QtCore.QRect(390, 240, 41, 31))
 		logo_txt2.setFont(logo_font)
 		logo_txt2.setStyleSheet("color: rgb(69,226,228);")
 
 		logo_pic = QtWidgets.QLabel(self)
-		logo_pic.setGeometry(QtCore.QRect(280,160,31,31))
+		logo_pic.setGeometry(QtCore.QRect(440, 240, 31, 31))
 		logo_pic.setPixmap(QtGui.QPixmap(drink_logo))
 		logo_pic.setScaledContents(True)
 
@@ -317,14 +318,14 @@ class recipe_window(QMainWindow):
 		self.cams.show()
 		self.close()
 
-class custom_window(QMainWindow):
+class custom_window(QSplashScreen):
 	def __init__(self, loadout):
 		super().__init__()
 		self.title = "first_screen"
 		self.top = 0
 		self.left = 0
-		self.height = 240
-		self.width = 320
+		self.height = 320
+		self.width = 480
 		self.loadout = loadout
 		self.indx = 0
 		self.InitUi()
@@ -348,35 +349,35 @@ class custom_window(QMainWindow):
 		font.setBold(False)
 		font.setItalic(False)
 		font.setWeight(50)
-		font.setPointSize(20)
+		font.setPointSize(28)
 
 		self.recipe_button = QtWidgets.QPushButton("Add: " + self.curr_loadout[0], self)
-		self.recipe_button.setGeometry(QtCore.QRect(10, 10, 301, 61))
+		self.recipe_button.setGeometry(QtCore.QRect(10, 0, 451, 91))
 		self.recipe_button.setFont(font)
 		self.recipe_button.setStyleSheet(main_button_style)
 		self.recipe_button.clicked.connect(self.recipe_clicked)
 
 		font.setPointSize(16)
 		minus_button = QtWidgets.QPushButton('- 0.5', self)
-		minus_button.setGeometry(QtCore.QRect(10, 80, 81, 61))
+		minus_button.setGeometry(QtCore.QRect(10, 120, 111, 91))
 		minus_button.setFont(font)
 		minus_button.setStyleSheet(ghost_button_style)
 		minus_button.clicked.connect(self.minus_clicked)
 
 		add_button = QtWidgets.QPushButton('+ 0.5', self)
-		add_button.setGeometry(QtCore.QRect(230, 80, 81, 61))
+		add_button.setGeometry(QtCore.QRect(360, 120, 111, 91))
 		add_button.setFont(font)
 		add_button.setStyleSheet(ghost_button_style)
 		add_button.clicked.connect(self.add_clicked)
 
 		self.ounce_label = QtWidgets.QLabel('0 oz', self)
 		self.ounce_label.setAlignment(Qt.AlignCenter)
-		self.ounce_label.setGeometry(QtCore.QRect(80, 80, 161, 61))
+		self.ounce_label.setGeometry(QtCore.QRect(110, 120, 261, 91))
 		self.ounce_label.setFont(font)
 		self.ounce_label.setStyleSheet(label_style)
 
 		back_button = QtWidgets.QToolButton(self)
-		back_button.setGeometry(QtCore.QRect(0, 160, 161, 31))
+		back_button.setGeometry(QtCore.QRect(10, 230, 161, 41))
 		back_button.setFont(font)
 		back_button.setIcon(icon)
 		back_button.setStyleSheet(back_button_style)
@@ -384,18 +385,18 @@ class custom_window(QMainWindow):
 
 		logo_txt1 =QtWidgets.QLabel("Bar", self)
 		logo_txt1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt1.setGeometry(QtCore.QRect(210, 160, 41, 31))
+		logo_txt1.setGeometry(QtCore.QRect(350, 240, 41, 31))
 		logo_txt1.setFont(logo_font)
 		logo_txt1.setStyleSheet("color: rgb(255,78,96);")
 
 		logo_txt2 =QtWidgets.QLabel("Bot", self)
 		logo_txt2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt2.setGeometry(QtCore.QRect(245, 160, 41, 31))
+		logo_txt2.setGeometry(QtCore.QRect(390, 240, 41, 31))
 		logo_txt2.setFont(logo_font)
 		logo_txt2.setStyleSheet("color: rgb(69,226,228);")
 
 		logo_pic = QtWidgets.QLabel(self)
-		logo_pic.setGeometry(QtCore.QRect(280,160,31,31))
+		logo_pic.setGeometry(QtCore.QRect(440, 240, 31, 31))
 		logo_pic.setPixmap(QtGui.QPixmap(drink_logo))
 		logo_pic.setScaledContents(True)
 
@@ -452,14 +453,14 @@ class custom_window(QMainWindow):
 					break
 			self.recipe_button.setText("Add: " + self.curr_loadout[self.indx])
 
-class setup_window(QMainWindow):
+class setup_window(QSplashScreen):
 	def __init__(self, loadout):
 		super().__init__()
 		self.title = "first_screen"
 		self.top = 0
 		self.left = 0
-		self.height = 240
-		self.width = 320
+		self.height = 320
+		self.width = 480
 		self.loadout = loadout
 		self.InitUi()
 
@@ -478,22 +479,22 @@ class setup_window(QMainWindow):
 		font.setBold(False)
 		font.setItalic(False)
 		font.setWeight(50)
-		font.setPointSize(20)
+		font.setPointSize(28)
 
 		loadout_button = QtWidgets.QPushButton('Change Loadout', self)
-		loadout_button.setGeometry(QtCore.QRect(10, 10, 301, 61))
+		loadout_button.setGeometry(QtCore.QRect(10, 0, 451, 91))
 		loadout_button.setFont(font)
 		loadout_button.setStyleSheet(main_button_style)
 		loadout_button.clicked.connect(self.loadout_clicked)
 
 		prime_flush_button = QtWidgets.QPushButton('Prime/Flush', self)
-		prime_flush_button.setGeometry(QtCore.QRect(10, 80, 301, 61))
+		prime_flush_button.setGeometry(QtCore.QRect(10, 110, 451, 91))
 		prime_flush_button.setFont(font)
 		prime_flush_button.setStyleSheet(main_button_style)
 		prime_flush_button.clicked.connect(self.prime_flush_clicked)
 
 		back_button = QtWidgets.QToolButton(self)
-		back_button.setGeometry(QtCore.QRect(0, 160, 161, 31))
+		back_button.setGeometry(QtCore.QRect(10, 230, 161, 41))
 		back_button.setFont(font)
 		back_button.setIcon(icon)
 		back_button.setStyleSheet(back_button_style)
@@ -501,18 +502,18 @@ class setup_window(QMainWindow):
 
 		logo_txt1 =QtWidgets.QLabel("Bar", self)
 		logo_txt1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt1.setGeometry(QtCore.QRect(210, 160, 41, 31))
+		logo_txt1.setGeometry(QtCore.QRect(350, 240, 41, 31))
 		logo_txt1.setFont(logo_font)
 		logo_txt1.setStyleSheet("color: rgb(255,78,96);")
 
 		logo_txt2 =QtWidgets.QLabel("Bot", self)
 		logo_txt2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt2.setGeometry(QtCore.QRect(245, 160, 41, 31))
+		logo_txt2.setGeometry(QtCore.QRect(390, 240, 41, 31))
 		logo_txt2.setFont(logo_font)
 		logo_txt2.setStyleSheet("color: rgb(69,226,228);")
 
 		logo_pic = QtWidgets.QLabel(self)
-		logo_pic.setGeometry(QtCore.QRect(280,160,31,31))
+		logo_pic.setGeometry(QtCore.QRect(440, 240, 31, 31))
 		logo_pic.setPixmap(QtGui.QPixmap(drink_logo))
 		logo_pic.setScaledContents(True)
 
@@ -534,14 +535,14 @@ class setup_window(QMainWindow):
 		self.cams.show()
 		self.close()
 
-class prime_flush_window(QMainWindow):
+class prime_flush_window(QSplashScreen):
 	def __init__(self, loadout):
 		super().__init__()
 		self.title = "first_screen"
 		self.top = 0
 		self.left = 0
-		self.height = 240
-		self.width = 320
+		self.height = 320
+		self.width = 480
 		self.loadout = loadout
 		self.InitUi()
 
@@ -560,22 +561,22 @@ class prime_flush_window(QMainWindow):
 		font.setBold(False)
 		font.setItalic(False)
 		font.setWeight(50)
-		font.setPointSize(20)
+		font.setPointSize(28)
 
 		prime_button = QtWidgets.QPushButton('Prime Pumps', self)
-		prime_button.setGeometry(QtCore.QRect(10, 10, 301, 61))
+		prime_button.setGeometry(QtCore.QRect(10, 0, 451, 91))
 		prime_button.setFont(font)
 		prime_button.setStyleSheet(main_button_style)
 		prime_button.clicked.connect(self.prime_clicked)
 
 		flush_button = QtWidgets.QPushButton('Flush Pumps', self)
-		flush_button.setGeometry(QtCore.QRect(10, 80, 301, 61))
+		flush_button.setGeometry(QtCore.QRect(10, 110, 451, 91))
 		flush_button.setFont(font)
 		flush_button.setStyleSheet(main_button_style)
 		flush_button.clicked.connect(self.flush_clicked)
 
 		back_button = QtWidgets.QToolButton(self)
-		back_button.setGeometry(QtCore.QRect(0, 160, 161, 31))
+		back_button.setGeometry(QtCore.QRect(10, 230, 161, 41))
 		back_button.setFont(font)
 		back_button.setIcon(icon)
 		back_button.setStyleSheet(back_button_style)
@@ -583,18 +584,18 @@ class prime_flush_window(QMainWindow):
 
 		logo_txt1 =QtWidgets.QLabel("Bar", self)
 		logo_txt1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt1.setGeometry(QtCore.QRect(210, 160, 41, 31))
+		logo_txt1.setGeometry(QtCore.QRect(350, 240, 41, 31))
 		logo_txt1.setFont(logo_font)
 		logo_txt1.setStyleSheet("color: rgb(255,78,96);")
 
 		logo_txt2 =QtWidgets.QLabel("Bot", self)
 		logo_txt2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt2.setGeometry(QtCore.QRect(245, 160, 41, 31))
+		logo_txt2.setGeometry(QtCore.QRect(390, 240, 41, 31))
 		logo_txt2.setFont(logo_font)
 		logo_txt2.setStyleSheet("color: rgb(69,226,228);")
 
 		logo_pic = QtWidgets.QLabel(self)
-		logo_pic.setGeometry(QtCore.QRect(280,160,31,31))
+		logo_pic.setGeometry(QtCore.QRect(440, 240, 31, 31))
 		logo_pic.setPixmap(QtGui.QPixmap(drink_logo))
 		logo_pic.setScaledContents(True)
 
@@ -612,14 +613,14 @@ class prime_flush_window(QMainWindow):
 		self.cams.show()
 		self.close()
 
-class loadout_window(QMainWindow):
+class loadout_window(QSplashScreen):
 	def __init__(self, loadout):
 		super().__init__()
 		self.title = "first_screen"
 		self.top = 0
 		self.left = 0
-		self.height = 240
-		self.width = 320
+		self.height = 320
+		self.width = 480
 		self.loadout = loadout
 		self.indx = 0
 		self.pump = 1
@@ -644,35 +645,35 @@ class loadout_window(QMainWindow):
 		font.setBold(False)
 		font.setItalic(False)
 		font.setWeight(50)
-		font.setPointSize(20)
+		font.setPointSize(28)
 
 		self.loadout_button = QtWidgets.QPushButton("Add Pump " + str(self.pump), self)
-		self.loadout_button.setGeometry(QtCore.QRect(10, 10, 301, 61))
+		self.loadout_button.setGeometry(QtCore.QRect(10, 0, 451, 91))
 		self.loadout_button.setFont(font)
 		self.loadout_button.setStyleSheet(main_button_style)
 		self.loadout_button.clicked.connect(self.loadout_clicked)
 
 		font.setPointSize(11)
 		previous_button = QtWidgets.QPushButton('Previous', self)
-		previous_button.setGeometry(QtCore.QRect(10, 80, 81, 61))
+		previous_button.setGeometry(QtCore.QRect(10, 120, 111, 91))
 		previous_button.setFont(font)
 		previous_button.setStyleSheet(ghost_button_style)
 		previous_button.clicked.connect(self.previous_clicked)
 
 		next_button = QtWidgets.QPushButton('Next', self)
-		next_button.setGeometry(QtCore.QRect(230, 80, 81, 61))
+		next_button.setGeometry(QtCore.QRect(360, 120, 111, 91))
 		next_button.setFont(font)
 		next_button.setStyleSheet(ghost_button_style)
 		next_button.clicked.connect(self.next_clicked)
 
 		self.ingredient_label = QtWidgets.QLabel(self.ingredients[0], self)
 		self.ingredient_label.setAlignment(Qt.AlignCenter)
-		self.ingredient_label.setGeometry(QtCore.QRect(80, 80, 161, 61))
+		self.ingredient_label.setGeometry(QtCore.QRect(110, 120, 261, 91))
 		self.ingredient_label.setFont(font)
 		self.ingredient_label.setStyleSheet(label_style)
 
 		back_button = QtWidgets.QToolButton(self)
-		back_button.setGeometry(QtCore.QRect(0, 160, 161, 31))
+		back_button.setGeometry(QtCore.QRect(10, 230, 161, 41))
 		back_button.setFont(font)
 		back_button.setIcon(icon)
 		back_button.setStyleSheet(back_button_style)
@@ -680,18 +681,18 @@ class loadout_window(QMainWindow):
 
 		logo_txt1 =QtWidgets.QLabel("Bar", self)
 		logo_txt1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt1.setGeometry(QtCore.QRect(210, 160, 41, 31))
+		logo_txt1.setGeometry(QtCore.QRect(350, 240, 41, 31))
 		logo_txt1.setFont(logo_font)
 		logo_txt1.setStyleSheet("color: rgb(255,78,96);")
 
 		logo_txt2 =QtWidgets.QLabel("Bot", self)
 		logo_txt2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-		logo_txt2.setGeometry(QtCore.QRect(245, 160, 41, 31))
+		logo_txt2.setGeometry(QtCore.QRect(390, 240, 41, 31))
 		logo_txt2.setFont(logo_font)
 		logo_txt2.setStyleSheet("color: rgb(69,226,228);")
 
 		logo_pic = QtWidgets.QLabel(self)
-		logo_pic.setGeometry(QtCore.QRect(280,160,31,31))
+		logo_pic.setGeometry(QtCore.QRect(440, 240, 31, 31))
 		logo_pic.setPixmap(QtGui.QPixmap(drink_logo))
 		logo_pic.setScaledContents(True)
 
