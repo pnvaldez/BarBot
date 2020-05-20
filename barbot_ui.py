@@ -49,10 +49,10 @@ arrow_icon = "Images/back_arrow.png"
 
 
 ######GUI
-class Window(QSplashScreen):
+class Window(QMainWindow):
 	def __init__(self,loadout):
 		super().__init__()
-		self.title = "first_screen"
+		self.title = "BarBot"
 		self.top = 0
 		self.left = 0
 		self.height = 320
@@ -118,10 +118,10 @@ class Window(QSplashScreen):
 		self.cams.show()
 		self.close()
 
-class drink_window(QSplashScreen):
+class drink_window(QMainWindow):
 	def __init__(self, loadout):
 		super().__init__()
-		self.title = "first_screen"
+		self.title = "BarBot"
 		self.top = 0
 		self.left = 0
 		self.height = 320
@@ -131,7 +131,7 @@ class drink_window(QSplashScreen):
 
 	def InitUi(self):
 		MainWindow = QtWidgets.QMainWindow()
-		self.setWindowTitle(self.title)
+		#self.setWindowTitle(self.title)
 		self.setGeometry(self.top, self.left, self.width, self.height)
 		self.setStyleSheet(background_style)
 		self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -210,10 +210,10 @@ class drink_window(QSplashScreen):
 		self.cams.show()
 		self.close()
 
-class recipe_window(QSplashScreen):
+class recipe_window(QMainWindow):
 	def __init__(self, loadout):
 		super().__init__()
-		self.title = "first_screen"
+		self.title = "BarBot"
 		self.top = 0
 		self.left = 0
 		self.height = 320
@@ -291,7 +291,7 @@ class recipe_window(QSplashScreen):
 		#self.cams = recipe_window(self.loadout)
 		#self.cams.show()
 		#self.close()
-		curr_drink = Drink(self.drink_list[self.indx], self.loadout.get_loadout(), self.loadout.ser)
+		curr_drink = Drink(self.drink_list[self.indx])
 		self.recipe_button.setText("Pouring ...")
 		curr_drink.make_drink()
 		time.sleep(3)
@@ -318,10 +318,10 @@ class recipe_window(QSplashScreen):
 		self.cams.show()
 		self.close()
 
-class custom_window(QSplashScreen):
+class custom_window(QMainWindow):
 	def __init__(self, loadout):
 		super().__init__()
-		self.title = "first_screen"
+		self.title = "BarBot"
 		self.top = 0
 		self.left = 0
 		self.height = 320
@@ -418,7 +418,7 @@ class custom_window(QSplashScreen):
 
 			print(self.curr_recipe)
 			print(self.curr_loadout)
-			curr_drink = Drink(self.curr_recipe, self.curr_loadout, self.loadout.ser)
+			curr_drink = Drink(self.curr_recipe)
 			curr_drink.make_drink()
 			self.cams = drink_window(self.loadout)
 			self.cams.show()
@@ -453,10 +453,10 @@ class custom_window(QSplashScreen):
 					break
 			self.recipe_button.setText("Add: " + self.curr_loadout[self.indx])
 
-class setup_window(QSplashScreen):
+class setup_window(QMainWindow):
 	def __init__(self, loadout):
 		super().__init__()
-		self.title = "first_screen"
+		self.title = "BarBot"
 		self.top = 0
 		self.left = 0
 		self.height = 320
@@ -535,10 +535,10 @@ class setup_window(QSplashScreen):
 		self.cams.show()
 		self.close()
 
-class prime_flush_window(QSplashScreen):
+class prime_flush_window(QMainWindow):
 	def __init__(self, loadout):
 		super().__init__()
-		self.title = "first_screen"
+		self.title = "BarBot"
 		self.top = 0
 		self.left = 0
 		self.height = 320
@@ -613,10 +613,10 @@ class prime_flush_window(QSplashScreen):
 		self.cams.show()
 		self.close()
 
-class loadout_window(QSplashScreen):
+class loadout_window(QMainWindow):
 	def __init__(self, loadout):
 		super().__init__()
-		self.title = "first_screen"
+		self.title = "BarBot"
 		self.top = 0
 		self.left = 0
 		self.height = 320

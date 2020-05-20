@@ -1,19 +1,29 @@
+import sys
+import serial
+import time
+import csv
+import RPi.GPIO as GPIO
+
 loadout_csv = './config/barbot_loadout.txt'
 drink_recipe_csv = "./config/barbot_recipes.txt"
 ingredient_csv = "./config/barbot_ingredients.txt"
 flowrate = 1.31 #ml/sec
 
-import sys
-import serial
-import time
-import csv
+#GPIO Setup
+GPIO.setmode(GPIO.BCM)
+
+pump_1 = 26
+pump_2 = 19
+pump_3 = 13
+pump_4 = 6
+
+pumps = {"pump_1" : pump_1, "pump_2" : pump_2, "pump_3" : pump_3, "pump_4" : pump_4}
 
 class Drink:
-	def __init__(self, recipe_list, loadout, ser):
+	def __init__(self, recipe_list):
 		self.name = recipe_list[0]
 		self.recipe = recipe_list[1] #recipe is a dict, form of ingredient : servings
-		self.loadout = loadout
-		self.ser = ser
+		self.loadout = Utility().loadout
 
 	def can_make(self):
 		for key in self.recipe:
@@ -21,32 +31,31 @@ class Drink:
 				return False
 		return True
 
-	def create_serial(self):
-		serial_output = {}
+	def create_command(self):
+		command = {}
 		for i in range(len(self.loadout)):
 			for key in self.recipe:
 				if key == self.loadout[i]:
-					pump = (i + 2) * 100 #pumps start at 2
-					servings = int(self.recipe[key] * 10)
-					serial_output[key] = str(pump + servings)
+					num = (i + 1)
+					pump = "pump_" + str(num)
+					serving_time = (self.recipe[key] * 28.4131) / flowrate
+					command[pump] = serving_time
 
-		return serial_output
+		return command
 
 	def make_drink(self):
-		command = self.create_serial()
+		command = self.create_command()
 		print(command)
-		for key in command:
-			curr_output = command[key]
-			curr_serving = (float(curr_output[1:])) / 10
-			delay_time = (curr_serving * 29.57) / flowrate
-			print("Pouring: " + key + " for " + str(curr_serving) + " ounces")
-			self.ser.write(bytes(curr_output, 'utf-8'))
-			time.sleep(delay_time + 3)
+		for pump in command:
+                    print(pump)
+                    print("Pump:" + str(command[pump]))
+                    GPIO.output(pumps[pump], 0)
+                    time.sleep(command[pump])
+                    GPIO.output(pumps[pump], 1)
 
 class Utility:
-	def __init__(self, ser):
+	def __init__(self):
 		self.loadout = self.get_loadout()
-		self.ser = ser
 
 	def get_loadout(self):
 		with open(loadout_csv) as csv_file:
@@ -101,37 +110,29 @@ class Utility:
 			writer = csv.writer(f)
 			writer.writerow(new_loadout)
 
-	def send_to_arduino(self, outputs):
-		for key in outputs:
-			curr_output = outputs[key]
-			curr_serving = (float(curr_output[1:])) / 10
-			delay_time = (curr_serving * 29.57) / flowrate
-			print("Pouring: " + key + " for " + str(curr_serving) + " ounces")
-			self.ser.write(bytes(curr_output, 'utf-8'))
-			time.sleep(delay_time + 3)
+	def send_to_gpio(self, outputs):
+		for pump in outputs:
+			print("Pump:" + str(outputs[pump]))
+			GPIO.output(pumps[pump], 0)
+			time.sleep(outputs[pump])
+			GPIO.output(pumps[pump], 1)
 
 	def prime_pumps(self):
 		prime_time = 5 #seconds
-		serial_time = (prime_time * flowrate) / 29.57
-		serial_time = int(serial_time * 10)
-
-		serial_output = {}
-		for i in range (4):
-			curr_key = "PUMP_" + str(i + 1)
-			serial_output[curr_key] = str(((i + 2)*100) + serial_time)
+		gpio_output = {}
+		for i in range (1, 5):
+                    key = "pump_" + str(i)
+                    gpio_output[key] = prime_time
 
 		print("Priming Pumps")
-		self.send_to_arduino(serial_output)
+		self.send_to_gpio(gpio_output)
 
-	def flush_pumps():
+	def flush_pumps(self):
 		flush_time = 10 #seconds
-		serial_time = (flush_time * flowrate) / 29.57
-		serial_time = int(serial_time * 10)
-
-		serial_output = {}
-		for i in range (4):
-			curr_key = "PUMP_" + str(i + 1)
-			serial_output[curr_key] = str(((i + 2)*100) + serial_time)
+		gpio_output = {}
+		for i in range (1, 5):
+                    key = "pump_" + str(i)
+                    gpio_output[key] = flush_time
 
 		print("Flushing Pumps")
-		send_to_arduino(serial_output)
+		self.send_to_gpio(gpio_output)

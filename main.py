@@ -2,33 +2,34 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtGui     import *
 from PyQt5.QtCore    import *
 from PyQt5.QtWidgets import *
+import RPi.GPIO as GPIO
 import sys
-import serial
 import time
-import csv
 
-from find_arduino_port import get_ports, find_arduino
+
 from barbot_classes import *
 from barbot_ui import *
 
-flowrate = 1.31 #ml/sec
+#GPIO Setup
+GPIO.setmode(GPIO.BCM)
 
-found_ports = get_ports()        
-arduino_port = find_arduino(found_ports)
+pump_1 = 26
+pump_2 = 19
+pump_3 = 13
+pump_4 = 6
 
-if arduino_port != 'None':
-    ser = serial.Serial(arduino_port, baudrate = 9600, timeout=1)
-    print('Connected to ' + arduino_port)
+GPIO.setup(pump_1, GPIO.OUT)
+GPIO.setup(pump_2, GPIO.OUT)
+GPIO.setup(pump_3, GPIO.OUT)
+GPIO.setup(pump_4, GPIO.OUT)
 
-else:
-    print('Connection Issue!')
-
-time.sleep(2)
-ser.write(bytes(str(flowrate), 'utf-8'))
-
+GPIO.output(pump_1, 1)
+GPIO.output(pump_2, 1)
+GPIO.output(pump_3, 1)
+GPIO.output(pump_4, 1)
 
 #Run the Program
-barbot_utility = Utility(ser)
+barbot_utility = Utility()
 app=QApplication(sys.argv)
 ex=Window(barbot_utility)
 sys.exit(app.exec_())
